@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<script>
+fetch('http://localhost/acortador/get_links.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Red no OK'); 
+        }
+        return response.text();
+    })
+    .then(data => {
+        const lineas = data.split('\n');
+        const url = lineas[1];
+        location.href=url;
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la petición fetch:', error);
+    });
+</script>
+</body>
+</html>
